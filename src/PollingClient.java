@@ -4,7 +4,7 @@ public class PollingClient {
                 int start = 0;
                 PollingCaller caller = new PollingCaller();
                 while(caller.returned()==false) { //Polling
-                        System.out.print((start +=1) + ", "); // Zählerausgabe
+                        System.out.print((start +=1) + ", "); // Zählerausgabe yo yo yo 
                         try {
                                 Thread.sleep(2000);
                         } catch (InterruptedException e) {
