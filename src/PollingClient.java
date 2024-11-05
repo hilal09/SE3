@@ -4,9 +4,9 @@ public class PollingClient {
                 int start = 0;
                 PollingCaller caller = new PollingCaller();
                 while(caller.returned()==false) { //Polling
-                        System.out.print((start +=1) + ", "); // hier könnte etwas sinnvolles gemacht werden
+                        System.out.print((start +=1) + ", "); // Zählerausgabe
                         try {
-                                Thread.sleep(1000);
+                                Thread.sleep(2000);
                         } catch (InterruptedException e) {
                                 e.printStackTrace();
                         }
