@@ -1,22 +1,20 @@
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 public class TageAusrechnen {
 
-    public static void main(String[] args) {
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        int currentYear = currentDateTime.getYear();
-        int currentMonth = currentDateTime.getMonthValue();
-        int currentDay = currentDateTime.getDayOfMonth();
-
-        int month = 9;
-        int day = 9;
-
+    public String tageausrechnen(){
+        LocalDate currentDate = LocalDate.now();
+        LocalDate bday = LocalDate.of(2025, 9, 9);
         int daysUntilNextBday = 0;
 
-        
+        while (!currentDate.equals(bday)) { 
+            daysUntilNextBday += 1;
+            currentDate = currentDate.plusDays(1);   
+        }
 
-        System.out.println(currentYear);
+        return Integer.toString(daysUntilNextBday);
     }
-}
+}        
+
 
 
