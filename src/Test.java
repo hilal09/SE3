@@ -1,19 +1,8 @@
-
 import java.util.concurrent.*;
 
-
-public class CompletableFuturePollingTest extends Thread {
-
-    private int counter = 0;
+public class Test {
 
     public static void main(String[] args) {
-        new CompletableFuturePollingTest(); 
-    }
-    public CompletableFuturePollingTest() {
-        this.start();
-    }
-    public void run() {
-       
         BMIRechner bmi = new BMIRechner();
 
         CompletableFuture.supplyAsync(() -> {
@@ -24,10 +13,6 @@ public class CompletableFuturePollingTest extends Thread {
             .thenAccept(result -> System.out.println(Thread.currentThread() + " Diagnose: " + result))
             .join(); 
         
-    }      
-        
-    private int getRandomSleepTime(int min, int max) {
-        return (min + (int)(Math.random() * ((max- min) + 1)));
     }
-}
     
+}
