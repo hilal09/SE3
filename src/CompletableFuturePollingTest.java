@@ -17,17 +17,27 @@ public class CompletableFuturePollingTest extends Thread {
         BMIRechner bmi = new BMIRechner();
 
         CompletableFuture.supplyAsync(() -> {
+            getRandomSleepTime(1000,3000);
             double bmiValue = bmi.bmiBerechnen();
             System.out.println("Thread: " + Thread.currentThread().getName() + " - BMI-Wert: " + bmiValue);
             return bmiValue;})
-            .thenApplyAsync(s -> bmi.diagnose(s))                
+            .thenApplyAsync(s -> {
+                bmi.diagnose(s);
+                
+            })                
             .thenAccept(result -> System.out.println(Thread.currentThread() + " Diagnose: " + result))
             .join(); 
         
     }      
         
-    private int getRandomSleepTime(int min, int max) {
-        return (min + (int)(Math.random() * ((max- min) + 1)));
+    private void getRandomSleepTime(int min, int max) {
+        try {
+            Thread.sleep((min + (int)(Math.random() * ((max- min) + 1))));
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
     }
 }
     
