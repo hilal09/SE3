@@ -17,7 +17,7 @@ public class CompletableFuturePollingTest extends Thread {
         CompletableFuture.supplyAsync(() -> {
             double bmiValue = bmi.bmiBerechnen();
                 getRandomSleepTime();
-                Thread.currentThread().setName("Thread 1");
+                Thread.currentThread().setName("BMI-Thread");
                 System.out.println("Thread: \"" + Thread.currentThread() + "\" - BMI-Wert: " + bmiValue);
                 return bmiValue;
             })
@@ -27,7 +27,7 @@ public class CompletableFuturePollingTest extends Thread {
                 return r;
             })                
             .thenAccept(result -> {
-                Thread.currentThread().setName("Thread 2");
+                Thread.currentThread().setName("Diagnose-Thread");
                 System.out.println("Thread: \"" + Thread.currentThread() + "\" - Diagnose: " + result);
             })
             .join(); 
@@ -37,11 +37,13 @@ public class CompletableFuturePollingTest extends Thread {
     private void getRandomSleepTime() {
         int zahl = 0;
         Random rand = new Random();
-        int timer = (rand.nextInt(3) + 1);
+        //random zeit für allgemein warten
+        int randomTimer = (rand.nextInt(3) + 1);
 
         //Zaehlerausgabe
         System.out.print(zahl); 
-        while (timer>=0) {
+        //zwischen jeder zeit wird random gewartet
+        while (randomTimer>=0) {
             System.out.println(", ");
             System.out.print(++zahl); 
             try {
@@ -50,7 +52,7 @@ public class CompletableFuturePollingTest extends Thread {
                 System.out.println("Zaehlerausgabe beendet.");
                 e.printStackTrace();
             }
-            timer--;
+            randomTimer--;
         }
         System.out.println("");
         
