@@ -1,5 +1,5 @@
-import java.util.concurrent.*;
 import java.util.Random;
+import java.util.concurrent.*;
 
 public class CompletableFuturePollingTest extends Thread {
 
@@ -16,14 +16,14 @@ public class CompletableFuturePollingTest extends Thread {
 
         CompletableFuture.supplyAsync(() -> {
             double bmiValue = bmi.bmiBerechnen();
-                getRandomSleepTime(1000, 3000);
+                getRandomSleepTime();
                 Thread.currentThread().setName("Thread 1");
                 System.out.println("Thread: \"" + Thread.currentThread() + "\" - BMI-Wert: " + bmiValue);
                 return bmiValue;
             })
             .thenApplyAsync(s -> {
                 String r = bmi.diagnose(s);
-                getRandomSleepTime(1000, 3000);
+                getRandomSleepTime();
                 return r;
             })                
             .thenAccept(result -> {
@@ -34,29 +34,26 @@ public class CompletableFuturePollingTest extends Thread {
         
     }      
         
-    private void getRandomSleepTime(int min, int max) {
+    private void getRandomSleepTime() {
+        int zahl = 0;
+        Random rand = new Random();
+        int timer = (rand.nextInt(3) + 1);
 
-        try {
-            Thread.sleep((min + (int)(Math.random() * ((max- min) + 1))));
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        //Zaehlerausgabe
+        System.out.print(zahl); 
+        while (timer>=0) {
+            System.out.println(", ");
+            System.out.print(++zahl); 
+            try {
+                Thread.sleep((rand.nextInt(3) + 1) * 1000);
+            } catch (InterruptedException e) {
+                System.out.println("Zaehlerausgabe beendet.");
+                e.printStackTrace();
+            }
+            timer--;
         }
-
-        // System.out.println(", ");
-        //     System.out.print(++zahl); 
-        //     try {
-        //         Thread.sleep((rand.nextInt(3) + 1) * 1000);
-        //     } catch (InterruptedException e) {
-        //         System.out.println("Zaehlerausgabe beendet.");
-        //     }
+        System.out.println("");
         
     }
-
-    // private void waiting() {
-    //     Random rand = new Random();
-    //     int waitingTime = //zufallige zahl dauer
-    // }
-
 }
     
