@@ -23,7 +23,7 @@ public class CompletableFuturePollingTest extends Thread {
             return bmiValue;})
             .thenApplyAsync(s -> {
                 bmi.diagnose(s);
-                
+                return ??;
             })                
             .thenAccept(result -> System.out.println(Thread.currentThread() + " Diagnose: " + result))
             .join(); 

@@ -5,8 +5,8 @@ import java.util.Random;
 public class CallbackClient extends Thread {
     
     boolean stop = false;
-    int zahl = 0;
-    TageAusrechnen bday = new TageAusrechnen();
+    
+    // TageAusrechnen bday = new TageAusrechnen();
 
     // public CallbackClient() {
         
@@ -39,7 +39,8 @@ public class CallbackClient extends Thread {
         // CallbackCaller caller = new CallbackCaller(this); // delegiert asynchronen Aufruf
         new CallbackCaller(this); // delegiert asynchronen Aufruf
         Random rand = new Random();
-
+        
+        int zahl = 0;
         //Zählerausgabe
         System.out.print(zahl); 
         while (!stop){
