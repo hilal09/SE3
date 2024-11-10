@@ -11,6 +11,7 @@ public class PollingCaller extends Thread {
     }
 
     //geburtstag berechnen
+    @Override
     public void run() {
 
         LocalDate currentDate = LocalDate.now();
