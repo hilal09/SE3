@@ -1,31 +1,20 @@
-// import java.io.IOException;
-import java.time.LocalDate; //sunny
+import java.time.LocalDate;
 import java.util.Random;
 
-public class CallbackCaller extends Thread { // führt asynchronen Aufruf aus
+public class CallbackCaller extends Thread { // fuehrt asynchronen Aufruf aus
     
     CallbackClient client;
     
-    public CallbackCaller (CallbackClient c) { 
+    public CallbackCaller(CallbackClient c) { 
         client = c; 
         this.start(); 
     }
     
-    // public void run() { // Hier könnte ein entfernter Aufruf stehen
-    //     System.out.println(" entfernter Aufruf läuft u. wartet auf return ");
-    //     try {
-    //         System.in.read();
-    //     } catch (IOException e) { 
-    //         e.printStackTrace(); 
-    //     }
-    //     client.callback();
-    // }
-
-    //sunny (code von tage ausrechnen + aenderungen):
+    /** tage zaehlen und client.callback() methode aufrufen */
     public void run() {
         LocalDate currentDate = LocalDate.now();
         //kommender geburtstag hard coded
-        LocalDate bday = LocalDate.of(2024, 12, 29);
+        LocalDate bday = LocalDate.of(2025, 07, 06);
         int daysUntilNextBday = 0;
 
         while (!currentDate.equals(bday)) { 
@@ -42,8 +31,6 @@ public class CallbackCaller extends Thread { // führt asynchronen Aufruf aus
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        
-        // client.interrupt();
         client.callback(daysUntilNextBday);
     
     }

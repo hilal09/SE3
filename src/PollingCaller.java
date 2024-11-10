@@ -1,5 +1,3 @@
-
-// import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Random;
 
@@ -33,13 +31,6 @@ public class PollingCaller extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        // System.out.println(" entfernter Aufruf läuft u. wartet auf Taste ");
-        // try {
-        //     System.in.read();
-        // } catch (IOException e) { 
-        //     e.printStackTrace(); 
-        // }
         returned = true;
     }
     
@@ -50,5 +41,4 @@ public class PollingCaller extends Thread {
     public int getDaysUntilNextBday() {
         return daysUntilNextBday;
     }
-
 }
