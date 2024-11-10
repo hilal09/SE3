@@ -1,7 +1,8 @@
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-import java.util.random.*;
-public class CallbackClient {
+// import java.util.concurrent.TimeUnit;
+// import java.util.random.*;
+
+public class CallbackClient extends Thread {
     
     boolean stop = false;
     int zahl = 0;
@@ -35,7 +36,8 @@ public class CallbackClient {
 
     public CallbackClient() {
         
-        CallbackCaller caller = new CallbackCaller(this); // delegiert asynchronen Aufruf
+        // CallbackCaller caller = new CallbackCaller(this); // delegiert asynchronen Aufruf
+        new CallbackCaller(this); // delegiert asynchronen Aufruf
         Random rand = new Random();
 
         //Zählerausgabe
@@ -44,19 +46,30 @@ public class CallbackClient {
             try {
                 Thread.sleep((rand.nextInt(3) + 1) * 1000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                //wie kommt man in diesen block? wenn stop, dann interrupt 
+                //(falls gerade der main thread sleep ist) damit zaehlerausgabe stoppt. 
+                //(in diesem fall ohne wiederholte if abfrage fuer stop)
+                System.out.println("Zaehlerausgabe beendet.");
+                // e.printStackTrace();
             }
-            System.out.println(", ");
-            System.out.print(++zahl); 
+            if (!stop) {
+                System.out.println(", ");
+                System.out.print(++zahl); 
+            } else break;
+
+            // System.out.println(", ");
+            // System.out.print(++zahl); 
         }
-        System.out.println();
+        // System.out.println();
+        // System.out.println("Zaehlerausgabe beendet.");
     }
 
     public void callback(int result) {
         stop = true;
         System.out.println();
         System.out.println("Es verbleiben " + result + " Tage bis zu deinem Geburtstag.");
-        System.exit(0);
+        // Thread.currentThread().interrupt();
+        // System.exit(0);
     }
 
     public static void main(String[] args) { 
