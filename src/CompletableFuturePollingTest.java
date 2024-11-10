@@ -6,9 +6,14 @@ public class CompletableFuturePollingTest extends Thread {
     public static void main(String[] args) {
         new CompletableFuturePollingTest(); 
     }
+
     public CompletableFuturePollingTest() {
         this.start();
     }
+
+    /** 
+     * BMI Berechnung und Diagnose wird nacheinander ausgefuehrt, CompletableFuture Methoden werden aufgerufen
+     */
     @Override
     public void run() {
        
@@ -32,8 +37,11 @@ public class CompletableFuturePollingTest extends Thread {
             })
             .join(); 
         
-    }      
+    }
         
+    /**
+     * Wartezeit der Threads wird hier implementiert
+     */
     private void getRandomSleepTime() {
         int zahl = 0;
         Random rand = new Random();
@@ -55,7 +63,6 @@ public class CompletableFuturePollingTest extends Thread {
             randomTimer--;
         }
         System.out.println();
-        
     }
 }
     
