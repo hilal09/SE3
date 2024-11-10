@@ -37,8 +37,6 @@ public class CallbackClient extends Thread {
         stop = true;
         System.out.println();
         System.out.println("Es verbleiben " + result + " Tage bis zu deinem Geburtstag.");
-        // Thread.currentThread().interrupt();
-        // System.exit(0);
     }
 
     public static void main(String[] args) { 
