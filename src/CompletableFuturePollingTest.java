@@ -37,13 +37,13 @@ public class CompletableFuturePollingTest extends Thread {
     private void getRandomSleepTime() {
         int zahl = 0;
         Random rand = new Random();
-        //random zeit für allgemein warten
+        //random zahl fuer gesamtwartezeit
         int randomTimer = (rand.nextInt(3) + 1);
 
         //Zaehlerausgabe
         System.out.print(zahl); 
         //zwischen jeder zeit wird random gewartet
-        while (randomTimer>=0) {
+        while (randomTimer >= 0) {
             System.out.println(", ");
             System.out.print(++zahl); 
             try {
@@ -54,7 +54,7 @@ public class CompletableFuturePollingTest extends Thread {
             }
             randomTimer--;
         }
-        System.out.println("");
+        System.out.println();
         
     }
 }
