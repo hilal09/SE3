@@ -10,12 +10,12 @@ public class PollingCaller extends Thread {
         this.start();  
     }
 
-    //geburtstag berechnen
+    // Tage bis zum naechsten Geburtstag zaehlen
     @Override
     public void run() {
 
         LocalDate currentDate = LocalDate.now();
-        //kommender geburtstag hard coded
+        // kommender Geburtstag (hard coded)
         LocalDate bday = LocalDate.of(2024, 12, 29);
 
         while (!currentDate.equals(bday)) { 
@@ -23,9 +23,9 @@ public class PollingCaller extends Thread {
             currentDate = currentDate.plusDays(1);   
         }
 
-        //warten
+        // warten
         Random rand = new Random();
-        // random.nextInt(max - min + 1) + min : zufaellige zahl zwischen null und angegebene zahl-1
+        // random.nextInt(max - min + 1) + min : zufaellige Zahl zwischen Null und angegebene Zahl-1        
         int randomNum = rand.nextInt(7) + 4; //zufaellige zahl zwischen 4-10
         try {
             sleep(randomNum * 1000);
@@ -35,6 +35,9 @@ public class PollingCaller extends Thread {
         returned = true;
     }
     
+    /** 
+     * wird von PollingClient aufgerufen um zu pruefen, ob die Aufgabe beendet ist
+     */
     public boolean returned() { 
         return returned; 
     }
