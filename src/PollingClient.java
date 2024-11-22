@@ -5,6 +5,7 @@ public class PollingClient {
 
         // Delegieren der Aufgabe an PollingCaller, Instanz davon angelegt
         PollingCaller caller = new PollingCaller();
+        System.out.println("PollingCaller Konstruktor aufgerufen.");
         Random rand = new Random();
         
         // Zaehlerausgabe

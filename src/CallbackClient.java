@@ -11,6 +11,7 @@ public class CallbackClient extends Thread {
     public CallbackClient() {
         
         new CallbackCaller(this); // delegiert asynchronen Aufruf
+        System.out.println("CallbackCaller Konstruktor aufgerufen.");
         Random rand = new Random();
         
         // Zaehlerausgabe:
